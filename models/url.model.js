@@ -3,12 +3,12 @@ const Schema = mongoose.Schema;
 
 const urlSchema = new Schema(
   {
-    originalUrl: {
+    longUrl: {
       type: String,
       required: [true, "Long URL is required"],
     },
     owner: {
-      type: mongoose.Types.ObjectId,
+      type: String,
       ref: "User",
       default: "Anonymous",
     },

@@ -1,62 +1,19 @@
 <div class="container">
 
-  <form action="/register">
-    <div class="mb-12">
-      <label class="form-label">Paste a long URL link</label>
+  <form id="urlForm" method="post" action="/shorten">
+    <div class="input-group">
       <input
         type="text"
         class="form-control"
         id="longUrl"
-        aria-describedby="emailHelp"
+        name="longUrl"
+        placeholder="Enter a long URL link here"
       />
-    </div>
-    <div class="row g-3">
-      <div class="col-auto">
-        <label class="visually-hidden">urless.com</label>
-        <input
-          type="text"
-          readonly
-          class="form-control-plaintext"
-          id="staticEmail2"
-          value="urless.com"
-        />
-      </div>
-      <div class="col-auto">
-        <label class="visually-hidden">Your custom URL</label>
-        <input
-          type="text"
-          class="form-control"
-          id="customUrl"
-          placeholder="Your custom URL"
-        />
-      </div>
-      <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3">Create URL</button>
-      </div>
+
+      <button type="submit" class="btn btn-primary">Shorten</button>
     </div>
   </form>
-  <p id="short-url">Here is your shortened URL: <a href="<%= shortUrl %>"><%= shortUrl %></a></p>
+  <a href="/register" class="btn btn-secondary"><i class="bi bi-stars"></i>End
+    your link with words that will make it unique
+  </a>
 </div>
-<script>
-  const form = document.querySelector('form');
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData(form); 
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        body: formData
-      });
-      const data = await response.json(); // Convert the response to JSON
-      // Handle the shortened URL in the response data
-      if (!data.errors){
-        console.log(data);
-      } else {
-        console.error(data);
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  });
-</script>

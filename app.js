@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const path = require("path");
 
 // Configurations
 
@@ -11,6 +12,9 @@ require("./configs/db.config");
 
 const app = express();
 
+// Serve static file
+
+app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "hbs");
 app.set("views", `${__dirname}/views`);
 
@@ -27,4 +31,4 @@ app.get("/", (req, res) => {
 });
 
 const port = 3000;
-app.listen(port, () => console.info(`App running at port $(port)`));
+app.listen(port, () => console.info(`App running at port ${port}`));

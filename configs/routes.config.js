@@ -1,6 +1,7 @@
 const express = require("express");
 const url = require("../controllers/urls.controller");
 const user = require("../controllers/users.controller");
+const secure = require("../middlewares/auth.middleware");
 
 const router = express.Router();
 
@@ -23,11 +24,17 @@ router.get("/register", user.register);
 router.post("/register", user.doRegister);
 
 router.get("/login", user.login);
-/* router.post("/login", user.doLogin);
+router.post("/login", user.doLogin);
 
-router.get("/profile", user.detail);
+router.get("/dashboard", secure.isAuthenticated, user.dashboard);
 
-router.get("/logout", url.logout);
-router.get("/logout", url.doLogout); */
+/* router.get("/profile", user.detail); */
+
+module.exports.logout = (req, res, next) => {
+  req.session.destroy();
+  req.session = null;
+  res.clearCookie("connect.sid");
+  res.redirect("/login");
+};
 
 module.exports = router;

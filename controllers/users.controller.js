@@ -1,6 +1,8 @@
 const User = require("../models/user.model");
 const mongoose = require("mongoose");
 
+const { sessions } = require("../middlewares/auth.middleware");
+
 module.exports.register = (req, res, next) => {
   res.render("users/register");
 };
@@ -27,6 +29,7 @@ module.exports.doRegister = (req, res, next) => {
         res
           .status(400)
           .render("users/register", { user: req.body, errors: error.errors });
+        console.log(req.body);
       } else {
         next(error);
       }
@@ -35,4 +38,33 @@ module.exports.doRegister = (req, res, next) => {
 
 module.exports.login = (req, res, next) => {
   res.render("users/login");
+};
+
+module.exports.doLogin = (req, res, next) => {
+  User.findOne({ username: req.body.username })
+    .then((user) => {
+      if (!user) {
+        res.status(401).render("users/login", {
+          user: req.body,
+          errors: { password: "Invalid username or password" },
+        });
+      } else {
+        return user.checkPassword(req.body.password).then((match) => {
+          if (match) {
+            req.session.userId = user.id;
+            res.redirect("/dashboard");
+          } else {
+            res.status(401).render("users/login", {
+              user: req.body,
+              errors: { password: "Invalid username or password" },
+            });
+          }
+        });
+      }
+    })
+    .catch(next);
+};
+
+module.exports.dashboard = (req, res, next) => {
+  res.render("users/dashboard");
 };

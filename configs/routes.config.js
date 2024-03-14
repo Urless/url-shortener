@@ -26,7 +26,7 @@ router.post("/register", user.doRegister);
 router.get("/login", user.login);
 router.post("/login", user.doLogin);
 
-router.get("/dashboard", secure.isAuthenticated, user.dashboard);
+router.get("/dashboard", secure.isAuthenticated, url.list);
 
 /* router.get("/profile", user.detail); */
 

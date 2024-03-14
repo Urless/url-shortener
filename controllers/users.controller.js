@@ -68,3 +68,23 @@ module.exports.doLogin = (req, res, next) => {
 module.exports.dashboard = (req, res, next) => {
   res.render("users/dashboard");
 };
+
+module.exports.dashboard = (req, res, next) => {
+  const cookieHeader = req.headers.cookie;
+  const sessionId = cookieHeader.split('sessionId=') [1];
+
+}
+/*
+module.exports.edit = (req, res, next) => {
+  const user = User.find(req.params.username)
+    .then()
+    .catch()
+
+} */
+
+module.exports.logout = (req, res, next) => {
+  req.session.destroy();
+  req.session = null;
+  res.clearCookie('connect.sid')
+  res.redirect('/login');
+}

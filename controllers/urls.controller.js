@@ -18,6 +18,17 @@ module.exports.doCreate = (req, res, next) => {
     });
 };
 
+module.exports.list = (req, res, next) => {
+  const { longUrl, shortUrl, createdAt, lifeSpan } = req.query;
+  const criterial = {};
+  if (shortUrl) criterial.shortUrl = new RegExp(shortUrl, "i");
+
+  Url.find(criterial)
+    .sort({ createdAt: "asc" })
+    .then((urls) => res.render("users/dashboard", { urls }))
+    .catch((error) => next(error));
+};
+
 function generateShortUrl() {
   return Array.from({ length: 8 }, () => Math.random().toString(36)[2]).join(
     ""

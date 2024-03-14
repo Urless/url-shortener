@@ -29,6 +29,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const { session, loadUserSession } = require("./configs/session.config");
 app.use(session);
 app.use(loadUserSession);
+//app.use(authMiddleware.loadUser);
 
 // App routes
 const routes = require("./configs/routes.config");

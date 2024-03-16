@@ -20,3 +20,18 @@
   background-color: #ffb703;
   color: #fff;
 }
+.container-fluid {
+  background-color: #ffb703;
+}
+.list-group-item.active {
+  background-color: #219ebc;
+}
+
+.container.base {
+  width: 100%;
+  background-color: #ffb703;
+  margin: 0;
+}
+.genaral{
+  display: flex;
+}

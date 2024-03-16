@@ -8,7 +8,7 @@ module.exports.create = (req, res, next) => res.render("urls/shorten");
 
 module.exports.doCreate = (req, res, next) => {
   const urlData = req.body.longUrl;
-  const customUrl = req.body.customUrl.toLowerCase();
+  const customUrl = req.body.customUrl;
 
   if (process.env.RESERVEDKEYWORDS.includes(customUrl)) {
     return res.render("urls/shorten", {
@@ -17,28 +17,31 @@ module.exports.doCreate = (req, res, next) => {
   }
 
   // Check if the custom URL already exists in the database
-  Url.findOne({ shortUrl: customUrl }).then((existingUrl) => {
-    if (existingUrl) {
-      return res.render("urls/shorten", {
-        error: "This URL is not available. Please choose a different one.",
-      });
-    }
-  });
+  Url.findOne({ shortUrl: customUrl })
+    .then((existingUrl) => {
+      if (existingUrl) {
+        return res.render("urls/shorten", {
+          error: "This URL already exists. Please choose a different one.",
+        });
+      } else {
+        let shortId;
 
-  let shortId;
-
-  if (customUrl) {
-    shortId = customUrl;
-  } else {
-    shortId = generateShortUrl();
-  }
-  Url.create({ longUrl: urlData, shortUrl: shortId })
-    .then((url) => {
-      res.render("urls/shorten", { shortId: `${req.get("host")}/${shortId}` });
+        if (customUrl) {
+          shortId = customUrl;
+        } else {
+          shortId = generateShortUrl();
+        }
+        return Url.create({ longUrl: urlData, shortUrl: shortId }).then(
+          (url) => {
+            // add controller and redirect to the url created
+            res.render("urls/shorten", {
+              shortId: `${req.get("host")}/${shortId}`,
+            });
+          }
+        );
+      }
     })
-    .catch((error) => {
-      res.json(error);
-    });
+    .catch(next);
 };
 
 module.exports.list = (req, res, next) => {

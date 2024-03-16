@@ -8,7 +8,7 @@ const urlSchema = new Schema(
       required: [true, "Long URL is required"],
     },
     owner: {
-      type: mongoose.Types.ObjectId,
+      type: String,
       ref: "User",
       default: "Anonymous",
     },

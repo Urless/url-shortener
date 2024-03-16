@@ -21,7 +21,6 @@ module.exports.session = expressSession({
 
 module.exports.loadUserSession = (req, res, next) => {
   const userId = req.session.userId;
-  console.log({ userId });
   if (!userId) {
     next();
   } else {

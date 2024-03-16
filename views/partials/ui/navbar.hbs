@@ -24,9 +24,11 @@
           <p>Url shortener</p>
         </li>
       </ul>
-      {{#if isLoggedIn}}
-        <a href="/my-account" class="btn btn-" type="button">My account</a>
-        <a href="/logout" class="btn btn-" type="button">Logout</a>
+      {{#if currentUser}}
+        <a href="/my-account">My account</a>
+        <form action="/logout" method="post">
+          <button type="submit" class="btn">Logout</button>
+        </form>
       {{else}}
         <div class="d-flex">
           <a
@@ -34,7 +36,7 @@
             class="btn btn-outline-primary"
             type="button"
           >Login</a>
-          <a href="/register" class="btn btn-" type="button">Register</a>
+          <a href="/register" class="btn btn-primary" type="button">Register</a>
         </div>
       {{/if}}
     </div>

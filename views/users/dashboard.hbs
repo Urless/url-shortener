@@ -1,4 +1,4 @@
-<h1>Hello {{user.username}}! welcome to the Dashbord</h1>
+<h1>Hello {{currentUser.username}}! welcome to the Dashbord</h1>
 <ul class="list-group">
   <li class="list-group-item active" aria-current="true">An active item</li>
   <li class="list-group-item">A second item</li>
@@ -19,17 +19,16 @@
       <div class="mb-3">
         <label for="basic-url" class="form-label">Your vanity URL</label>
         <div class="input-group">
-          <span class="input-group-text" id="longUrl">https://urless.com/</span>
+          <span class="input-group-text">https://urless.com/</span>
           <input
             type="text"
             class="form-control"
-            id="longUrl"
-            name="longUrl"
+            id="customUrl"
+            name="customUrl"
             placeholder="Custom url"
           />
         </div>
-        <div class="form-text" id="basic-addon4">Example help text goes outside
-          the input group.</div>
+        <div class="form-text">Example help text goes outside the input group.</div>
       </div>
 
       <button type="submit" class="btn btn-primary">Shorten</button>

@@ -26,15 +26,10 @@ router.post("/register", user.doRegister);
 router.get("/login", user.login);
 router.post("/login", user.doLogin);
 
+router.post("/logout", user.logout);
+
 router.get("/dashboard", secure.isAuthenticated, url.list);
 
-/* router.get("/profile", user.detail); */
-
-module.exports.logout = (req, res, next) => {
-  req.session.destroy();
-  req.session = null;
-  res.clearCookie("connect.sid");
-  res.redirect("/login");
-};
+/* router.get("/my-account", user.detail); */
 
 module.exports = router;

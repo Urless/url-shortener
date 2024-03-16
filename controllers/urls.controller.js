@@ -8,7 +8,30 @@ module.exports.create = (req, res, next) => res.render("urls/shorten");
 
 module.exports.doCreate = (req, res, next) => {
   const urlData = req.body.longUrl;
-  const shortId = generateShortUrl();
+  const customUrl = req.body.customUrl.toLowerCase();
+
+  if (process.env.RESERVEDKEYWORDS.includes(customUrl)) {
+    return res.render("urls/shorten", {
+      error: "This URL is not available. Please choose a different one.",
+    });
+  }
+
+  // Check if the custom URL already exists in the database
+  Url.findOne({ shortUrl: customUrl }).then((existingUrl) => {
+    if (existingUrl) {
+      return res.render("urls/shorten", {
+        error: "This URL is not available. Please choose a different one.",
+      });
+    }
+  });
+
+  let shortId;
+
+  if (customUrl) {
+    shortId = customUrl;
+  } else {
+    shortId = generateShortUrl();
+  }
   Url.create({ longUrl: urlData, shortUrl: shortId })
     .then((url) => {
       res.render("urls/shorten", { shortId: `${req.get("host")}/${shortId}` });

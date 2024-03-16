@@ -1,0 +1,22 @@
+* {
+  font-family: "Questrial", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.btn-primary {
+  background-color: #219ebc;
+  border-color: #219ebc;
+  padding: 0 25px;
+}
+.input-group {
+  box-shadow: rgba(0,0,0,.1) 0 12px 26px -4px;
+}
+#longUrl {
+  height: 60px;
+  line-height: 60px;
+}
+
+.home {
+  background-color: #ffb703;
+  color: #fff;
+}

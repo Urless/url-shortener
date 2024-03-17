@@ -43,3 +43,45 @@
   z-index: -1;
   margin: 0 auto;
 }
+
+.text-one {
+  animation-name: intro;
+  animation-duration: 3s;
+}
+.text-two {
+  animation-name: intro;
+  animation-duration: 6s;
+}
+.text-three {
+  animation-name: intro;
+  animation-duration: 9s;
+}
+
+@keyframes intro {
+  100% {
+    opacity: 1; }
+  0% {
+    opacity: 0; }
+}
+
+.container-global{
+  height: 100vh;
+  margin: 0;
+}
+.container-list {
+  width:70%;
+}
+.container-shorten{
+  width: 500px;
+  margin-top: 30px;
+  
+}
+.input-group{
+  width: 70%;
+}
+#urlForm{
+  width: 100%;
+}
+#customUrl{
+  width: 50%;
+}

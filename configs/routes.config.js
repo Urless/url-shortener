@@ -10,6 +10,8 @@ const router = express.Router();
 router.get("/shorten", url.create);
 router.post("/shorten", url.doCreate);
 
+router.get("/url/:shortUrl", url.doRedirect);
+
 /*  router.get("/url", url.list);
 
 router.get("/url/:id/edit", url.edit);
@@ -30,6 +32,6 @@ router.post("/logout", user.logout);
 
 router.get("/dashboard", secure.isAuthenticated, url.list);
 
-/* router.get("/my-account", user.detail); */
+router.get("/profile", user.edit);
 
 module.exports = router;

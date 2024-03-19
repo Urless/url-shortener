@@ -8,9 +8,13 @@
   border-color: #2a9d8f;
   padding: 0 25px;
 }
-.btn-primary:hover {
+.btn:hover {
   background-color: #264653;
   border-color: #264653;
+}
+.btn-secondary {
+  background-color: #e9c46a;
+  border-color: #e9c46a;
 }
 .input-group {
   box-shadow: rgba(0, 0, 0, 0.1) 0 12px 26px -4px;
@@ -42,4 +46,64 @@
   border-bottom-left-radius: 100px;
   z-index: -1;
   margin: 0 auto;
+}
+
+.feature-box {
+  display: block;
+  text-align: left;
+  left: 10px;
+  width: 100%;
+  max-width: calc(100% - 25px);
+  color: #fff;
+  border: 1px solid rgb(233 196 106 / 15%);
+  -webkit-border-radius: 16px;
+  -webkit-border-top-left-radius: 0;
+  -moz-border-radius: 16px;
+  -moz-border-radius-topleft: 0;
+  border-radius: 16px;
+  border-top-left-radius: 0;
+  padding: 15px;
+  background: rgba(233, 196, 106, 0.2);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 12px 26px -4px;
+}
+.text-one {
+  animation-name: intro;
+  animation-duration: 3s;
+}
+.text-two {
+  animation-name: intro;
+  animation-duration: 6s;
+}
+.text-three {
+  animation-name: intro;
+  animation-duration: 9s;
+}
+
+@keyframes intro {
+  100% {
+    opacity: 1; }
+  0% {
+    opacity: 0; }
+}
+
+.container-global{
+  height: 100vh;
+  margin: 0;
+}
+.container-list {
+  width:70%;
+}
+.container-shorten{
+  width: 500px;
+  margin-top: 30px;
+  
+}
+.input-group{
+  width: 70%;
+}
+#urlForm{
+  width: 100%;
+}
+#customUrl{
+  width: 50%;
 }

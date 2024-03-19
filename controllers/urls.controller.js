@@ -31,14 +31,25 @@ module.exports.doCreate = (req, res, next) => {
         } else {
           shortId = generateShortUrl();
         }
-        return Url.create({ longUrl: urlData, shortUrl: shortId }).then(
-          (url) => {
+
+        // Modified to set the owner only if the user is authenticated
+        const owner = req.user ? req.user._id : null;
+
+        return Url.create({
+          longUrl: urlData,
+          shortUrl: shortId,
+          owner: owner,
+        })
+          .then((url) => {
             // add controller and redirect to the url created
             res.render("urls/shorten", {
               shortId: `${req.get("host")}/${shortId}`,
             });
-          }
-        );
+          })
+          .catch((error) => {
+            console.error(error);
+            res.status(500).send("Internal Server Error");
+          });
       }
     })
     .catch(next);
@@ -60,3 +71,21 @@ function generateShortUrl() {
     ""
   );
 }
+
+// Redirecting users
+
+module.exports.doRedirect = (req, res, next) => {
+  Url.findOne({ shortUrl: req.params.shortUrl })
+    .then((url) => {
+      if (!url) {
+        console.log("URL not found for ID:", id);
+        return res.redirect("/");
+      }
+      console.log("Redirecting to:", url.longUrl);
+      return res.redirect(url.longUrl);
+    })
+    .catch((error) => {
+      console.error("Error while finding URL by ID:", error);
+      return res.redirect("/");
+    });
+};

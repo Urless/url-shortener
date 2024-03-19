@@ -25,10 +25,24 @@
         </li>
       </ul>
       {{#if currentUser}}
-        <a href="/my-account">My account</a>
-        <form action="/logout" method="post">
-          <button type="submit" class="btn">Logout</button>
-        </form>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-secondary dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ><i class="bi bi-person-circle"></i>
+            My account
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/profile">Edit</a></li>
+            <li>
+              <form class="mb-0 dropdown-item" action="/logout" method="post">
+                <button type="submit" class="btn">Logout</button>
+              </form>
+            </li>
+          </ul>
+        </div>
       {{else}}
         <div class="d-flex">
           <a

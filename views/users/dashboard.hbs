@@ -1,37 +1,30 @@
-<h1>Hello {{currentUser.username}}! welcome to the Dashbord</h1>
-<ul class="list-group">
-  <li class="list-group-item active" aria-current="true">An active item</li>
-  <li class="list-group-item">A second item</li>
-  <li class="list-group-item">A third item</li>
-  <li class="list-group-item">A fourth item</li>
-  <li class="list-group-item">And a fifth one</li>
-</ul>
-<div>
-  <form id="urlForm" method="post" action="/shorten">
-    <div class="input-group">
-      <input
-        type="text"
-        class="form-control"
-        id="longUrl"
-        name="longUrl"
-        placeholder="Enter a long URL link here"
-      />
-      <div class="mb-3">
-        <label for="basic-url" class="form-label">Your vanity URL</label>
+<div class="row container-fluid mx-0 text-white">
+<h3>Hello {{currentUser.username}}! welcome to the Dashbord</h3>
+<div class="background-shape"></div>
+  <div class="container-global text-white">
+    <div class="container-list">
+      <ul class="list-group col-md-9">
+        <li class="list-group-item active" aria-current="true">An active item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
+      </ul>
+    </div>
+    <div class="container-shorten col-md-10">
+      <form id="urlForm" method="post" action="/shorten">
+        <div class="input-group">
+          <input type="text" class="form-control" id="longUrl" name="longUrl" placeholder="Enter a long URL link here" />
+        <div class="mb-0">
+          <label for="basic-url" class="form-label">Your vanity URL</label>
         <div class="input-group">
           <span class="input-group-text">https://urless.com/</span>
-          <input
-            type="text"
-            class="form-control"
-            id="customUrl"
-            name="customUrl"
-            placeholder="Custom url"
-          />
+          <input type="text" class="form-control" id="customUrl" name="customUrl" placeholder="Custom url" />
         </div>
-        <div class="form-text">Example help text goes outside the input group.</div>
+        <div class="form-text text-white">Example help text goes outside the input group.</div>
       </div>
-
-      <button type="submit" class="btn btn-primary">Shorten</button>
+        <button type="submit" class="btn btn-primary">Shorten</button>
+      </form>
     </div>
-  </form>
+  </div>
 </div>

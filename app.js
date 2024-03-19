@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 const createError = require("http-errors");
+const URL = require("./models/url.model");
 
 const authMiddleware = require("./middlewares/auth.middleware");
 

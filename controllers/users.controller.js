@@ -66,20 +66,14 @@ module.exports.doLogin = (req, res, next) => {
 };
 
 module.exports.dashboard = (req, res, next) => {
+  const cookieHeader = req.headers.cookie;
+  const sessionId = cookieHeader.split("sessionId=")[1];
   res.render("users/dashboard", { isLoggedIn: !!req.session.userId });
 };
 
-module.exports.dashboard = (req, res, next) => {
-  const cookieHeader = req.headers.cookie;
-  const sessionId = cookieHeader.split("sessionId=")[1];
-};
-/*
 module.exports.edit = (req, res, next) => {
-  const user = User.find(req.params.username)
-    .then()
-    .catch()
-
-} */
+  res.render("users/profile", { user: req.session.userId });
+};
 
 module.exports.logout = (req, res, next) => {
   req.session.destroy();

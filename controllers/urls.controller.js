@@ -60,9 +60,11 @@ module.exports.list = (req, res, next) => {
   const criterial = {};
   if (shortUrl) criterial.shortUrl = new RegExp(shortUrl, "i");
 
-  Url.find(criterial)
+  Url.find({ owner: req.session.userId })
     .sort({ createdAt: "asc" })
-    .then((urls) => res.render("users/dashboard", { urls }))
+    .then((urls) =>
+      res.render("users/dashboard", { urls, domain: req.get("host") })
+    )
     .catch((error) => next(error));
 };
 

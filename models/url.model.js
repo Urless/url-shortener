@@ -26,6 +26,9 @@ const urlSchema = new Schema(
       type: Number,
       default: 60,
     },
+    engagements: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

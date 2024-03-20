@@ -68,7 +68,12 @@ module.exports.doLogin = (req, res, next) => {
 module.exports.dashboard = (req, res, next) => {
   const cookieHeader = req.headers.cookie;
   const sessionId = cookieHeader.split("sessionId=")[1];
-  res.render("users/dashboard", { isLoggedIn: !!req.session.userId });
+  console.log(req.get("host"));
+  console.log(req);
+  res.render("users/dashboard", {
+    isLoggedIn: !!req.session.userId,
+    domain: req.get("host"),
+  });
 };
 
 module.exports.edit = (req, res, next) => {

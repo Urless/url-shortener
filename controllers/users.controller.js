@@ -68,7 +68,12 @@ module.exports.doLogin = (req, res, next) => {
 module.exports.dashboard = (req, res, next) => {
   const cookieHeader = req.headers.cookie;
   const sessionId = cookieHeader.split("sessionId=")[1];
-  res.render("users/dashboard", { isLoggedIn: !!req.session.userId });
+  console.log(req.get("host"));
+  console.log(req);
+  res.render("users/dashboard", {
+    isLoggedIn: !!req.session.userId,
+    domain: req.get("host"),
+  });
 };
 
 module.exports.edit = (req, res, next) => {
@@ -76,28 +81,21 @@ module.exports.edit = (req, res, next) => {
 };
 
 module.exports.doEdit = (req, res, next) => {
-res.send('Hola')
+  if (!req.body.password) delete req.body.password
+  
+  const user = Object.assign(req.user, req.body);
+  user.save() 
+  .then(() => res.redirect('/profile'))
+  .catch((error) => {
+    if (error instanceof mongoose.Error.ValidationError) {
+      res
+        .status(400)
+        .render("users/profile", { user: req.body, errors: error.errors });
+    } else {
+      next(error);
+    } 
+  })
 
-  const user = req.body;
-  user.id = req.params.id;
-
-  User.findByIdAndUpdate(req.params.id, req.body, { runValidators: true })
-    .then((user) => {
-      if (!user) {
-        next(createError(404, "User not found"));
-      } else {
-        res.redirect(`/profile/${user.id}`);
-      }
-    })
-    .catch((error) => {
-      if (error instanceof mongoose.Error.ValidationError) {
-        res
-          .status(400)
-          .render("users/profile", { user: req.body, errors: error.errors });
-      } else {
-        next(error);
-      } 
-    }); 
 }; 
 
 module.exports.logout = (req, res, next) => {

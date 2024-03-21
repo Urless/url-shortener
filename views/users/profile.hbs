@@ -2,17 +2,17 @@
 <h3> You can EDIT all your data here!</h3>
 <div>
   <div class="background-shape"></div>
-<form  action="/users/{{currentUser.id}}/profile" method="post" class="row g-3">
+<form  action="/profile" method="post" class="row g-3">
   <div>
     <label for="inputPassword2" class="visually-hidden">Password</label> your actual user name is {{currentUser.username}}
-    <input type="text" class="form-control form-width" name="username" placeholder="User Name">
+    <input type="text" value="{{currentUser.username}}" class="form-control form-width" name="username" placeholder="User Name">
   </div>
   <div>
     <label for="inputPassword2" class="visually-hidden">Password</label>Your actual email acount is: {{currentUser.email}}
-    <input type="email" class="form-control form-width" name="email" placeholder="email">
+    <input type="email" value="{{currentUser.email}}" class="form-control form-width" name="email" placeholder="email">
   </div>
   <div>
-    <label for="inputPassword2" class="visually-hidden">Password</label>and your password is: {{currentUser.password}}
+    <label for="inputPassword2" class="visually-hidden">Password</label>and your password
     <input type="password" class="form-control form-width" name="password" placeholder="Password">
   </div>
   <div>

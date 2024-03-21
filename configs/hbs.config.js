@@ -1,5 +1,6 @@
 const hbs = require("hbs");
 const { options } = require("./routes.config");
+const dayjs = require("../configs/dayjs.config");
 
 hbs.registerPartials(`${__dirname}/../views/partials`);
 
@@ -12,4 +13,9 @@ hbs.registerHelper("isOwnedBy", function (resource, currentUser, options) {
   } else {
     return options.inverse(this);
   }
+});
+
+hbs.registerHelper("dateFormat", (options) => {
+  const { date, format } = options.hash;
+  return dayjs(date).format(format || "YYYY-MM-DD HH:mm:ss");
 });

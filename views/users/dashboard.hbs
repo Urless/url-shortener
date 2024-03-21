@@ -1,30 +1,32 @@
-<div class="row container-fluid mx-0 text-white">
-<h3>Hello {{currentUser.username}}! welcome to the Dashbord</h3>
-<div class="background-shape"></div>
-  <div class="container-global text-white">
-    <div class="container-list">
-      <ul class="list-group col-md-9">
-        <li class="list-group-item active" aria-current="true">An active item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
-      </ul>
+<div class="row container-fluid mx-0">
+<h3>Hello {{currentUser.username}}! welcome to the Dashboard {{domain}}</h3>
+  <div class="container-global">
+    <div class="list-group">
+      {{#each urls as |url|}}
+  <div class="list-group-item">
+    <input class="form-check-input me-1" type="checkbox" value="{{url.id}}">
+    <div>
+    <p><a class="short-url" href="{{../domain}}/{{url.shortUrl}}">{{../domain}}/{{url.shortUrl}}</a></p>
+    <p><a class="long-url" href="{{url.longUrl}}">{{url.longUrl}}</a></p>
+    <p><span>{{dateFormat date=url.createdAt}}</span><span>{{lifeSpan}}</span></p>
     </div>
-    <div class="container-shorten col-md-10">
+    </div>
+  {{/each}}
+  </div>
+    <div>
       <form id="urlForm" method="post" action="/shorten">
-        <div class="input-group">
+        <label for="longUrl">Destination</label>
+        <div class="input-group mb-2">
           <input type="text" class="form-control" id="longUrl" name="longUrl" placeholder="Enter a long URL link here" />
-        <div class="mb-0">
-          <label for="basic-url" class="form-label">Your vanity URL</label>
+        </div>
+        <label>Domain</label>
         <div class="input-group">
-          <span class="input-group-text">https://urless.com/</span>
+          <span class="input-group-text text-bg-secondary">https://urless.com/</span>
           <input type="text" class="form-control" id="customUrl" name="customUrl" placeholder="Custom url" />
+          <button type="submit" class="btn btn-primary">Shorten</button>
         </div>
         <div class="form-text text-white">Example help text goes outside the input group.</div>
       </div>
-        <button type="submit" class="btn btn-primary">Shorten</button>
       </form>
     </div>
   </div>
-</div>

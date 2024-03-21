@@ -75,6 +75,31 @@ module.exports.edit = (req, res, next) => {
   res.render("users/profile", { user: req.session.userId });
 };
 
+module.exports.doEdit = (req, res, next) => {
+res.send('Hola')
+
+  const user = req.body;
+  user.id = req.params.id;
+
+  User.findByIdAndUpdate(req.params.id, req.body, { runValidators: true })
+    .then((user) => {
+      if (!user) {
+        next(createError(404, "User not found"));
+      } else {
+        res.redirect(`/profile/${user.id}`);
+      }
+    })
+    .catch((error) => {
+      if (error instanceof mongoose.Error.ValidationError) {
+        res
+          .status(400)
+          .render("users/profile", { user: req.body, errors: error.errors });
+      } else {
+        next(error);
+      } 
+    }); 
+}; 
+
 module.exports.logout = (req, res, next) => {
   req.session.destroy();
   req.session = null;

@@ -10,7 +10,7 @@ const urlSchema = new Schema(
     owner: {
       type: mongoose.Types.ObjectId,
       ref: "User",
-      default: null,
+      default: null,// true?
     },
     shortUrl: {
       type: String,

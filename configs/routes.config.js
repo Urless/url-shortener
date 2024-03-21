@@ -32,6 +32,8 @@ router.post("/logout", user.logout);
 
 router.get("/dashboard", secure.isAuthenticated, url.list);
 
-router.get("/profile", user.edit);
+router.get("/profile", secure.isAuthenticated, user.edit);
+router.post("users/profile", secure.isAuthenticated, user.doEdit);
+
 
 module.exports = router;

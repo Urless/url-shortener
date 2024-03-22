@@ -1,23 +1,40 @@
 <h2>Hello {{currentUser.username}}! this is your User Profile</h2>
 <h3> You can EDIT all your data here!</h3>
+<div class="profile">
 <div>
   <div class="background-shape"></div>
-<form  action="/profile" method="post" class="row g-3">
-  <div>
-    <label for="inputPassword2" class="visually-hidden">Password</label> your actual user name is {{currentUser.username}}
-    <input type="text" value="{{currentUser.username}}" class="form-control form-width" name="username" placeholder="User Name">
-  </div>
-  <div>
-    <label for="inputPassword2" class="visually-hidden">Password</label>Your actual email acount is: {{currentUser.email}}
-    <input type="email" value="{{currentUser.email}}" class="form-control form-width" name="email" placeholder="email">
-  </div>
-  <div>
-    <label for="inputPassword2" class="visually-hidden">Password</label>and your password
-    <input type="password" class="form-control form-width" name="password" placeholder="Password">
-  </div>
-  <div>
-    <button type="submit" class="btn btn-primary mb-3">Save Changes</button>
-  </div>
-</form>
-</div>
+  <form  action="/profile" method="post" class="row g-3">
+    <div>
+      <label for="username" class="visually-hidden">USERNAME</label> your actual user name is: {{currentUser.username}}
+      <input type="text" value="{{currentUser.username}}" class="form-control is_invalid form-width {{#if errors.username }}is-invalid{{/if}}" name="username" placeholder="User Name">
+      {{#if errors.username }}<div class="invalid-feedback">{{errors.username}}</div>{{/if}} 
+    </div>
+    <div>
+      <label for="email" class="visually-hidden">E.MAIL</label>Your actual email acount is: {{currentUser.email}}
+      <input type="email" value="{{currentUser.email}}" class="form-control form-width {{#if errors.email }}is-invalid{{/if}}" name="email" placeholder="email">
+      {{#if errors.email }}<div class="invalid-feedback">{{errors.email}}</div>{{/if}}
+    </div>
+    <div>
+      <label for="inputPassword2" class="visually-hidden">Password</label>if you want change your actual password, please type a new password
+      <input type="password" class="form-control form-width {{#if errors.email }}is-invalid {{/if}}" name="password" placeholder="Password">
+      {{#if errors.password }}<div class="invalid-feedback">{{errors.password}}</div>{{/if}}
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary mb-3">Save Changes</button>
+    </div>
+  </form>
 
+  <div class="invalid-feedback text-red" >
+    Hola
+  </div>
+</div>
+  <div>
+    <div class="container">
+      
+      <button type="submit" class="btn btn-primary mb-3" ><a href="/users/{{currentUser.id}}/profile">Delete User<i class="bi bi-person-fill" role="button"></i></a></button>
+      <label for="deleteuser" class="visually-hidden">USERNAME</label>Are you sure? {{currentUser.username}}
+      <input type="text" value="{{currentUser.username}}" class="control-form  {{#if  errors.username }}is-invalid{{/if}}" name="username" placeholder="User Name">
+      
+    </div>
+  </div>
+</div>

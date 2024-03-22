@@ -114,5 +114,6 @@ a.long-url {
 .form-width {
   width: 50%;
 }
-=======
->>>>>>> origin/master
+.profile{
+  display: flex;
+}

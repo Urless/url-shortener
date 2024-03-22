@@ -2,6 +2,7 @@ const User = require("../models/user.model");
 const mongoose = require("mongoose");
 
 const { sessions } = require("../middlewares/auth.middleware");
+const { create } = require("connect-mongo");
 
 module.exports.register = (req, res, next) => {
   res.render("users/register");
@@ -90,8 +91,8 @@ module.exports.doEdit = (req, res, next) => {
     if (error instanceof mongoose.Error.ValidationError) {
       res
         .status(400)
-        .render("users/profile", { user: req.body, errors: error.errors });
-    } else {
+        .render("users/profile", { user: req.body, errors: { password: "Invalid username or password" }})
+        } else {
       next(error);
     } 
   })
@@ -104,3 +105,18 @@ module.exports.logout = (req, res, next) => {
   res.clearCookie("connect.sid");
   res.redirect("/login");
 };
+
+module.exports.delete = (req, res, next) => {
+  const id = req.params.id;
+  User.findByIdAndDelete(id)
+    .then((user) => {
+      if (!user) {
+        next(createError(404, 'User not found'))
+      } else {
+        res.redirect('/register');
+      }
+    })
+    .catch((error) => next(error));
+} 
+
+

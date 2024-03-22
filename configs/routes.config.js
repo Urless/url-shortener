@@ -32,7 +32,8 @@ router.get("/dashboard", secure.isAuthenticated, url.list);
 router.get("/profile", secure.isAuthenticated, user.edit);
 router.post("/profile", secure.isAuthenticated, user.doEdit);
 
-
 router.get("/:shortUrl", url.doRedirect);
+
+router.get("/users/:id/profile", user.delete)
 
 module.exports = router;

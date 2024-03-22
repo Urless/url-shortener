@@ -31,10 +31,11 @@
   <div>
     <div class="container">
       
-      <button type="submit" class="btn btn-primary mb-3" ><a href="/users/{{currentUser.id}}/profile">Delete User<i class="bi bi-person-fill" role="button"></i></a></button>
-      <label for="deleteuser" class="visually-hidden">USERNAME</label>Are you sure? {{currentUser.username}}
-      <input type="text" value="{{currentUser.username}}" class="control-form  {{#if  errors.username }}is-invalid{{/if}}" name="username" placeholder="User Name">
-      
+      <form action="/users/{{currentUser.id}}/profile" method="post" class="row g-3">
+        <button type="submit" class="btn btn-primary" >Delete User<i class="bi bi-person-fill"></i></button>
+        <div class="control-form  {{#if  errors.username }}is-invalid{{/if}}" name="username" placeholder="User Name"></div>
+        <label for="deleteuser" class="visually-hidden text-red">USERNAME</label><strong> Danger Place  for user {{currentUser.username}} </strong>
+      </form>
     </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 const createError = require("http-errors");
 const mongoose = require("mongoose");
 
-const Url = require("../models/url.model");
+const { Url } = require("../models/url.model");
 const User = require("../models/user.model");
 
 module.exports.create = (req, res, next) => res.render("urls/shorten");
@@ -90,4 +90,19 @@ module.exports.doRedirect = (req, res, next) => {
       console.error("Error while finding URL by ID:", error);
       return res.redirect("/");
     });
+};
+
+module.exports.delete = (req, res, next) => {
+  const url = req.params.shortUrl;
+  Url.findById(url)
+    .then((url) => {
+      if (!url) {
+        next(createError(404, "Url not found"));
+      } else {
+        return Url.deleteOne({ _id: shortUrl }).then(() =>
+          res.redirect("/dashboard")
+        );
+      }
+    })
+    .catch((error) => next(error));
 };

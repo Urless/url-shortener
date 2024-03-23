@@ -6,9 +6,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 const createError = require("http-errors");
-const URL = require("./models/url.model");
-
-const authMiddleware = require("./middlewares/auth.middleware");
+const { cleanUrl } = require("./models/url.model");
 
 // Configurations
 require("./configs/hbs.config");
@@ -53,6 +51,8 @@ app.use((error, req, res, next) => {
   console.error(error);
   res.status(error.status).render(`errors/${error.status}`);
 });
+
+setInterval(cleanUrl, 3000);
 
 const port = 3000;
 app.listen(port, () => console.info(`App running at port ${port}`));

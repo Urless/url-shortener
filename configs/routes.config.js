@@ -12,10 +12,9 @@ router.post("/shorten", url.doCreate);
 
 /*
 router.get("/url/:id/edit", url.edit);
-router.get("/url/:id/edit", url.doEdit);
+router.get("/url/:id/edit", url.doEdit); */
 
 router.get("/url/:id/delete", url.delete);
-router.get("/url/:id/delete", url.doDelete); */
 
 // User CRUD
 
@@ -31,7 +30,6 @@ router.get("/dashboard", secure.isAuthenticated, url.list);
 
 router.get("/profile", secure.isAuthenticated, user.edit);
 router.post("/profile", secure.isAuthenticated, user.doEdit);
-
 
 router.get("/:shortUrl", url.doRedirect);
 

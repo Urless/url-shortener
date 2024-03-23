@@ -14,7 +14,7 @@ router.post("/shorten", url.doCreate);
 router.get("/url/:id/edit", url.edit);
 router.get("/url/:id/edit", url.doEdit); */
 
-router.get("/url/:id/delete", url.delete);
+router.post("/url/:id/delete", url.delete);
 
 // User CRUD
 
@@ -33,7 +33,6 @@ router.post("/profile", secure.isAuthenticated, user.doEdit);
 
 router.get("/:shortUrl", url.doRedirect);
 
-
-router.post("/users/:id/profile", user.delete)
+router.post("/users/:id/profile", user.delete);
 
 module.exports = router;

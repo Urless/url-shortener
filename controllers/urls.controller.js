@@ -93,13 +93,13 @@ module.exports.doRedirect = (req, res, next) => {
 };
 
 module.exports.delete = (req, res, next) => {
-  const url = req.params.shortUrl;
-  Url.findById(url)
+  const id = req.params.id;
+  Url.findById(id)
     .then((url) => {
       if (!url) {
         next(createError(404, "Url not found"));
       } else {
-        return Url.deleteOne({ _id: shortUrl }).then(() =>
+        return Url.deleteOne({ _id: id }).then(() =>
           res.redirect("/dashboard")
         );
       }

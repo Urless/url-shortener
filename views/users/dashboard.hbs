@@ -1,33 +1,80 @@
 <div class="background-shape"></div>
 <div class="row container-fluid mx-0">
-<h3>Hello {{currentUser.username}}! welcome to the Dashboard {{domain}}</h3>
-  <div class="container-global">
+  <h3>Hello {{currentUser.username}}! welcome to the Dashboard {{domain}}</h3>
+  <div>
     <div class="list-group">
       {{#each urls as |url|}}
-  <div class="list-group-item">
-    <input class="form-check-input me-1" type="checkbox" value="{{url.id}}">
-    <div>
-    <p><a class="short-url" href="{{../domain}}/{{url.shortUrl}}">{{../domain}}/{{url.shortUrl}}</a></p>
-    <p><a class="long-url" href="{{url.longUrl}}">{{url.longUrl}}</a></p>
-    <p><span>{{dateFormat date=url.createdAt}}</span><span>{{lifeSpan}}</span></p>
+        <div class="list-group-item">
+          <input
+            class="form-check-input me-1"
+            type="checkbox"
+            value="{{url.id}}"
+          />
+          <div>
+            <p><a class="short-url" href="{{../domain}}/{{url.shortUrl}}">{{../domain}}/{{url.shortUrl}}</a></p>
+            <p><a
+                class="long-url"
+                href="{{url.longUrl}}"
+              >{{url.longUrl}}</a></p>
+            <p><span>{{dateFormat date=url.createdAt}}</span><span
+              >{{lifeSpan}}</span></p>
+          </div>
+          <form class="mb-0 dropdown-item" action="/edit" method="post">
+            <button type="submit" class="btn"><i class="bi bi-pen"></i>
+            </button>
+          </form>
+          <button
+            type="button"
+            class="dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          ><i class="bi bi-three-dots"></i>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="/link-details"><i
+                  class="bi bi-bar-chart"
+                ></i>
+                View link details</a></li>
+            <li>
+              <form class="mb-0 dropdown-item" action="/url/{{url.id}}/delete" method="post">
+                <button type="submit" class="btn"><i
+                    class="bi bi-trash"
+                  ></i>Delete</button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      {{/each}}
     </div>
-    </div>
-  {{/each}}
-  </div>
     <div>
       <form id="urlForm" method="post" action="/shorten">
         <label for="longUrl">Destination</label>
         <div class="input-group mb-2">
-          <input type="text" class="form-control" id="longUrl" name="longUrl" placeholder="Enter a long URL link here" />
+          <input
+            type="text"
+            class="form-control"
+            id="longUrl"
+            name="longUrl"
+            placeholder="Enter a long URL link here"
+          />
         </div>
         <label>Domain</label>
         <div class="input-group">
-          <span class="input-group-text text-bg-secondary">https://urless.com/</span>
-          <input type="text" class="form-control" id="customUrl" name="customUrl" placeholder="Custom url" />
+          <span
+            class="input-group-text text-bg-secondary"
+          >https://urless.com/</span>
+          <input
+            type="text"
+            class="form-control"
+            id="customUrl"
+            name="customUrl"
+            placeholder="Custom url"
+          />
           <button type="submit" class="btn btn-primary">Shorten</button>
         </div>
-        <div class="form-text text-white">Example help text goes outside the input group.</div>
-      </div>
+        <div class="form-text text-white">Example help text goes outside the
+          input group.</div>
       </form>
     </div>
   </div>
+</div>

@@ -12,10 +12,9 @@ router.post("/shorten", url.doCreate);
 
 /*
 router.get("/url/:id/edit", url.edit);
-router.get("/url/:id/edit", url.doEdit);
+router.get("/url/:id/edit", url.doEdit); */
 
 router.get("/url/:id/delete", url.delete);
-router.get("/url/:id/delete", url.doDelete); */
 
 // User CRUD
 

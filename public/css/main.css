@@ -3,10 +3,13 @@
   font-weight: 400;
   font-style: normal;
 }
+/* .background-default {
+  background-color: #f3f3f3;
+} */
 .btn-primary {
   background-color: #2a9d8f;
   border-color: #2a9d8f;
-  padding: 0 25px;
+  height: 40px;
 }
 .btn:hover {
   background-color: #264653;
@@ -19,6 +22,10 @@
 .input-group {
   height: 60px;
   line-height: 60px;
+}
+.input-group > .btn {
+  height: 60px;
+  padding: 0 25px;
 }
 a.short-url {
   color: #2a5bd7;
@@ -70,7 +77,6 @@ a.long-url {
   background: rgba(233, 196, 106, 0.2);
   box-shadow: rgba(0, 0, 0, 0.1) 0 12px 26px -4px;
 }
-<<<<<<< HEAD
 .text-one {
   animation-name: intro;
   animation-duration: 3s;
@@ -86,34 +92,30 @@ a.long-url {
 
 @keyframes intro {
   100% {
-    opacity: 1; }
+    opacity: 1;
+  }
   0% {
-    opacity: 0; }
+    opacity: 0;
+  }
 }
 
-.container-global{
+.container-global {
   height: 100vh;
   margin: 0;
 }
 .container-list {
-  width:70%;
+  width: 70%;
 }
-.container-shorten{
+.container-shorten {
   width: 500px;
   margin-top: 30px;
 }
-.input-group{
-  width: 70%;
-}
-#urlForm{
+#urlForm {
   width: 100%;
-}
-#customUrl{
-  width: 50%;
 }
 .form-width {
   width: 50%;
 }
-.profile{
+.profile {
   display: flex;
 }

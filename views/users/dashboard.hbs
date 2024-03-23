@@ -1,10 +1,11 @@
 <div class="background-shape"></div>
 <div class="row container-fluid mx-0">
   <h3>Hello {{currentUser.username}}! welcome to the Dashboard {{domain}}</h3>
-  <div>
+  <div class="row">
     <div class="list-group">
       {{#each urls as |url|}}
         <div class="list-group-item">
+          <div class="col-sm-8">
           <input
             class="form-check-input me-1"
             type="checkbox"
@@ -19,6 +20,8 @@
             <p><span>{{dateFormat date=url.createdAt}}</span><span
               >{{lifeSpan}}</span></p>
           </div>
+          </div>
+          <div class="col-sm-4">
           <form class="mb-0 dropdown-item" action="/edit" method="post">
             <button type="submit" class="btn"><i class="bi bi-pen"></i>
             </button>
@@ -43,6 +46,7 @@
               </form>
             </li>
           </ul>
+          </div>
         </div>
       {{/each}}
     </div>
@@ -70,6 +74,10 @@
             name="customUrl"
             placeholder="Custom url"
           />
+          <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" id="qrSwitch" role="switch">
+      <label class="form-check-label" for="qrSwitch">Generate QR Code</label>
+    </div>
           <button type="submit" class="btn btn-primary">Shorten</button>
         </div>
         <div class="form-text text-white">Example help text goes outside the
@@ -78,3 +86,13 @@
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('urlForm');
+    const qrSwitch = document.getElementById('qrSwitch');
+    
+    qrSwitch.addEventListener('change', () => {
+      form.action = qrSwitch.checked ? '/shorten-with-qr' : '/shorten';
+    });
+  });
+</script>

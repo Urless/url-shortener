@@ -11,6 +11,11 @@
   border-color: #2a9d8f;
   height: 40px;
 }
+#welcome {
+  font-size: 25px;
+  margin-top: 17px;
+  margin-left: 50px;
+}
 .btn:hover {
   background-color: #264653;
   border-color: #264653;

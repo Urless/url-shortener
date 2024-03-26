@@ -29,13 +29,15 @@
   </div>
 </div>
   <div>
+    <div class="divide">
     <div class="container">
-      
       <form action="/users/{{currentUser.id}}/profile" method="post" class="row g-3">
+        <label for="deleteuser" class="visually-hidden text-red">USERNAME</label><strong> Danger Zone - {{currentUser.username}} </strong>
         <button type="submit" class="btn btn-primary" >Delete User<i class="bi bi-person-fill"></i></button>
-        <div class="control-form  {{#if  errors.username }}is-invalid{{/if}}" name="username" placeholder="User Name"></div>
-        <label for="deleteuser" class="visually-hidden text-red">USERNAME</label><strong> Danger Place  for user {{currentUser.username}} </strong>
       </form>
+       <div class="control-form  {{#if  errors.username }}is-invalid{{/if}}" name="username" placeholder="User Name"></div>
+        <p style="color:red"><strong>If delete your user. Once you delete a user, there is no going back. Please be certain.</strong></p>
     </div>
+  </div>
   </div>
 </div>

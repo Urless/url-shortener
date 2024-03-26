@@ -1,6 +1,6 @@
 <div class="row container-fluid mx-0">
   <h3>Hello {{currentUser.username}}! welcome to the Dashboard {{domain}}</h3>
-  <div class="row">
+  <div class="row mt-2">
     <div class="list-group">
       {{#each urls as |url|}}
         <div class="list-group-item d-flex">
@@ -27,12 +27,12 @@
           </form>
           <button
             type="button"
-            class="dropdown-toggle"
+            class="dropdown-toggle btn btn-terciary"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           ><i class="bi bi-three-dots"></i>
           </button>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu btn btn-terciary">
             <li><a class="dropdown-item" href="/link-details"><i
                   class="bi bi-bar-chart"
                 ></i>
@@ -49,7 +49,7 @@
         </div>
       {{/each}}
     </div>
-    <div>
+    <div class="my-4">
       <form id="urlForm" method="post" action="/shorten">
         <label for="longUrl">Destination</label>
         <div class="input-group mb-2">
@@ -73,14 +73,13 @@
             name="customUrl"
             placeholder="Custom url"
           />
-          <div class="form-check form-switch">
+          <button type="submit" class="btn btn-primary">Shorten</button>
+        </div>
+        <div class="form-text">Customize your short URL.</div>
+        <div class="form-check form-switch my-3">
       <input class="form-check-input" type="checkbox" id="qrSwitch" role="switch">
       <label class="form-check-label" for="qrSwitch">Generate QR Code</label>
     </div>
-          <button type="submit" class="btn btn-primary">Shorten</button>
-        </div>
-        <div class="form-text text-white">Example help text goes outside the
-          input group.</div>
       </form>
     </div>
   </div>

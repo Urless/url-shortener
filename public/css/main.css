@@ -24,6 +24,15 @@
   background-color: #e9c46a;
   border-color: #e9c46a;
 }
+.btn-terciary {
+  background-color: transparent;
+  border: 0.1rem solid #dbe0eb;
+  border-radius: 5px;
+}
+.btn-terciary:hover {
+  border: 0.1rem solid #c2c6d1;
+  background-color: transparent;
+}
 .input-group {
   height: 60px;
   line-height: 60px;
@@ -32,13 +41,15 @@
   height: 60px;
   padding: 0 25px;
 }
+a {
+  text-decoration: none;
+  color: #fff;
+}
 a.short-url {
   color: #2a5bd7;
-  text-decoration: none;
 }
 a.long-url {
   color: #273144;
-  text-decoration: none;
 }
 .background-shape {
   position: absolute;
